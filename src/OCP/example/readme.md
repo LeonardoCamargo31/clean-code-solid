@@ -10,8 +10,9 @@ public class CalculadoraDePrecos{
 
     double desconto = tabela.descontoPara(produto.gerarValor());
     double frete = correios.para(produto.getCidade());
+    double valorDesconto = produto.getValor * desconto;
 
-    return produto.getValor * (1-desconto) + frete;
+    return (produto.getValor - desconto) + frete;
   }
 }
 
@@ -51,8 +52,9 @@ public class CalculadoraDePrecos{
     }
 
     double frete = correios.para(produto.getCidade());
+    double valorDesconto = produto.getValor * desconto;
 
-    return produto.getValor * (1-desconto) + frete;
+    return (produto.getValor - desconto) + frete;
   }
 }
 ```
@@ -74,6 +76,9 @@ public interface TabelaPreco {
 
 public class TabelaPreco1 implements TabelaPreco {}
 public class TabelaPreco2 implements TabelaPreco {}
+
+public class Frete1 implements ServicoDeEntrega {}
+public class Frete2 implements ServicoDeEntrega {}
 ```
 ## Próximo passo
 
