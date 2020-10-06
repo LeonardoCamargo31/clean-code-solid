@@ -65,6 +65,9 @@ Isso até resolve, porem esse código ficará complicado, cheio de If's, e difí
 
 Precisamos de classes que evoluam mais fácil, para isso, precisamos de classes **abertas para extensão, mas fechadas para modificação**, ou seja, extender o comportamento delas deve ser fácil. Mas ao mesmo tempo, elas devem ser fechadas para alteração.
 
+Mas o que isso significa? Este princípio diz, basicamente, que você deve permitir que seus usuários adicionem novas funcionalidades sem alterar código já existente.
+
+
 ## Primeiro passo
 
 Criar uma abstração para o problema, e fazer com que essas abstrações possam ser injetadas na classe que as usa. Se temos regras diferentes de desconto, basta criarmos interfaces que as representam.

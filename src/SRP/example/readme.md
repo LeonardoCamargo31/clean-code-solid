@@ -2,6 +2,8 @@
 
 É justamente o principio que lembra de coesão, a classe deve ter apenas uma responsabilidade.
 
+É tentador lotar uma classe com várias funcionalidades, como se você só pudesse carregar uma mala em uma viagem. O problema disso é que sua classe não será conceitualmente coesiva e posteriormente te trará vários motivos para mudar.
+
 Como encontrar classes não coesas?
 
  - Procure por classes que possuem muitos métodos diferentes, por classes que são modificadas com frequência, por classes que não param de crescer.
@@ -11,6 +13,9 @@ Então comece a pensar em dividir essas responsabilidades em classes menores.
 ## Coesão
 
 Coesão: **uma classe coesa é aquela que possui uma única responsabilidade**. Mais simples de serem mantidas, menos código e seu reúso é maior.
+
+
+## Exemplo
 
 Temos a classe `CalculadoraSalario`:
 
@@ -47,3 +52,49 @@ Repare que o método `dezOuVintePorCento` e `quinzeOuVintePorCento` possuem o me
 ![Example](./images/01.png)
 
 Agora cada regra de calculo esta bem isolada.
+
+## Outro exemplo:
+
+Ruim:
+
+```ts
+class UserSettings {
+  constructor(private readonly user: User) {}
+
+  changeSettings(settings: UserSettings) {
+    if (this.verifyCredentials()) {
+      // ...
+    }
+  }
+
+  verifyCredentials() {
+    // ...
+  }
+}
+```
+
+Bom:
+
+```ts
+class UserAuth {
+  constructor(private readonly user: User) {}
+
+  verifyCredentials() {
+    // ...
+  }
+}
+
+class UserSettings {
+  private readonly auth: UserAuth;
+
+  constructor(private readonly user: User) {
+    this.auth = new UserAuth(user);
+  }
+
+  changeSettings(settings: UserSettings) {
+    if (this.auth.verifyCredentials()) {
+      // ...
+    }
+  }
+}
+```

@@ -4,7 +4,6 @@
 
 A separação é importante, mas precisamos juntar todos esses pequenos comportamentos e compor o comportamento maior desejado pelo usuário. Essa é a hora que complica o outro lado da balança, o **acoplamento**.
 
-
 Exemplo temos a classe `GerarNotaFiscal`:
 
 ```java
@@ -52,7 +51,7 @@ Interfaces são um bom caminho, afinal interfaces são apenas contratos, e entã
 
 Agora `GerarNotaFiscal` depende apenas da interface.
 
-## Dependency inversion principle
+## Conceito
 
 Se precisamos acoplar que seja com classes estáveis. Sempre que uma classe depender de outra, ela sempre depender de outro módulos mais estável do que ela mesma.
 
@@ -61,3 +60,9 @@ Tente ao máximo não depender de implementações, tente depender de abstraçõ
 Você esta invertendo a maneira de depender das coisas, passa a depender agora de abstrações.
 
 No nosso exemplo,  a `AcaoAposGerarNota` é uma abstração estável, já `GerarNotaFiscal` é um implementação o que faz dela uma classe mais instável, mas ele só depende de abstrações.
+
+### Esse princípio afirma duas coisas essenciais:
+
+1. Módulos de alto nível não deveriam ser dependentes de módulos de baixo nível. Ambos devem depender de abstrações.
+
+2. Abstrações não deveriam ser dependentes de detalhes. Detalhes devem depender de abstrações.
